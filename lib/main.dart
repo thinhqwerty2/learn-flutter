@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learn_flutter/login_view/login_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,19 +12,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: SafeArea(
-        child: Scaffold(
-          body: MyLoginPage(),
-        ),
-      ),
-      debugShowCheckedModeBanner: false,
+        home: LoginView(appName: "Ứng dụng hàng đầu Việt Nam")
     );
   }
 }
 
 class MyLoginPage extends StatelessWidget{
   const MyLoginPage({super.key});
-  static const title = "Phần mềm abc";
+  static const title = "Phần mềm abcddddddđeeeeee";
 
 
   @override
