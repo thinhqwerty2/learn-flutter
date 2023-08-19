@@ -10,11 +10,13 @@ class MultiSelectionBox extends StatefulWidget {
       this.onChanged,
       this.decoration,
       this.formKey,
-      this.dropdownSearchData});
+      this.dropdownSearchData,
+      this.onSaved});
 
   final Key? formKey;
   final InputDecoration? decoration;
-  final Function(String?)? onChanged;
+  final FormFieldSetter<List<String>>? onChanged;
+  final FormFieldSetter<List<String>>? onSaved;
   final Icon icon;
   final Icon selectedIcon;
   final Map<String, String> mapItems;
@@ -35,6 +37,7 @@ class _MultiSelectionBoxState extends State<MultiSelectionBox> {
       margin: const EdgeInsets.all(8),
       child: DropdownButtonHideUnderline(
         child: DropdownButtonFormField2(
+          onSaved: (newValue) => widget.onSaved?.call(selectedItemsId),
           dropdownSearchData: widget.dropdownSearchData,
           decoration: widget.decoration,
           isExpanded: true,
@@ -76,7 +79,7 @@ class _MultiSelectionBoxState extends State<MultiSelectionBox> {
           }).toList(),
           //Use last selected item as the current value so if we've limited menu height, it scroll to last item.
           value: selectedItemsId.isEmpty ? null : selectedItemsId.last,
-          onChanged: (value) => widget.onChanged,
+          onChanged: (value) => widget.onSaved?.call(selectedItemsId),
           //Widget will show on select
           selectedItemBuilder: (context) {
             return widget.mapItems.keys.map(

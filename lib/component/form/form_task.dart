@@ -14,7 +14,7 @@ class FormCreateTask extends StatefulWidget {
 
 class _FormCreateTaskState extends State<FormCreateTask> {
   final GlobalKey<FormState> _formTask = GlobalKey<FormState>();
-  late String taskName;
+  late String taskName = "";
   late List<String> taskType = [
     "AaaaaAaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
     "Công việc nhóm",
@@ -49,7 +49,6 @@ class _FormCreateTaskState extends State<FormCreateTask> {
   void _submitForm() {
     if (_formTask.currentState!.validate()) {
       _formTask.currentState!.save();
-      print("Name: $taskName");
     }
   }
 
@@ -144,7 +143,6 @@ class _FormCreateTaskState extends State<FormCreateTask> {
                               lastDate: DateTime.now()
                                   .add(const Duration(days: 14))))!;
                           dateInput.text = deadline.toString();
-                          print(deadline);
                         },
                       );
                     }),
@@ -153,6 +151,9 @@ class _FormCreateTaskState extends State<FormCreateTask> {
                 mapItems: supervisor,
                 decoration:
                     inputDecoration.copyWith(label: Text("Người giám sát")),
+                onSaved: (newValue) {
+                  print("aaaaâ$newValue=====");
+                },
               ),
               Row(
                 children: [
